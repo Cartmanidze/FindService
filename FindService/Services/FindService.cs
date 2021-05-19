@@ -3,9 +3,11 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using GrpcFind;
 using GrpcText;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FindService.Services
 {
+    [Authorize]
     public class FindService : Find.FindBase
     {
 
