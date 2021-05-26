@@ -5,9 +5,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ./FindService/FindService ./FindService/FindService
-WORKDIR ./FindService/FindService ./FindService/FindService
-RUN dotnet restore "FindService.csproj"
+COPY NuGet.Config NuGet.Config
+COPY FindService.csproj FindService.csproj
+RUN dotnet restore FindService.csproj
+COPY . .
+WORKDIR /src
 RUN dotnet build "FindService.csproj" -c Release -o /app/build
 
 FROM build AS publish

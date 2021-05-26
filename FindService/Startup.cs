@@ -29,6 +29,7 @@ namespace FindService
             {
                 options.EnableDetailedErrors = true;
             });
+            services.AddAuthorization();
             services.AddJwtAuth(Configuration);
             services.Configure<TokenConfiguration>(Configuration.GetSection(nameof(TokenConfiguration)));
             services.TryAddTransient<AuthHttpClientHandler>();
